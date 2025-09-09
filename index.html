@@ -1,0 +1,423 @@
+<!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PrimeWave Exchange</title>
+  <meta name="description" content="PrimeWave Exchange – Fast, secure, global currency and digital wallet exchange." />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#0b1220;          /* deep navy */
+      --panel:#101a30;       /* panel background */
+      --muted:#6c7aa5;       /* muted text */
+      --text:#e8eeff;        /* main text */
+      --brand:#29c1d9;       /* aqua/teal */
+      --brand-2:#4da3ff;     /* wave blue */
+      --ok:#23d18b;
+      --warn:#ffb443;
+      --danger:#ff6b6b;
+      --ring: 0 0 0 3px rgb(41 193 217 / .25);
+      --radius:18px;
+      --shadow:0 10px 30px rgb(0 0 0 / .35);
+      --shadow-sm:0 8px 20px rgb(0 0 0 / .25);
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;height:100%;background:radial-gradient(1200px 800px at 80% -10%, #153057 0%, transparent 40%), var(--bg);color:var(--text);font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";}
+    a{color:var(--brand)}
+    .container{max-width:1100px;margin:0 auto;padding:0 20px}/* Header */
+header{position:sticky;top:0;z-index:50;background:linear-gradient(to bottom, rgba(11,18,32,.9), rgba(11,18,32,.6));backdrop-filter: blur(8px);border-bottom:1px solid rgba(255,255,255,.06)}
+.nav{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
+.logo{display:flex;align-items:center;gap:12px;font-weight:700;letter-spacing:.2px}
+.logo-badge{width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,var(--brand),var(--brand-2));display:grid;place-items:center;box-shadow:var(--shadow-sm)}
+.logo-wave{width:20px;height:14px;display:block;background:conic-gradient(from 0deg at 50% 50%, transparent 0 25%, #fff 25% 50%, transparent 50% 75%, #fff 75% 100%);filter:drop-shadow(0 2px 6px rgba(0,0,0,.25))}
+nav a{margin:0 10px;text-decoration:none;color:#cfe6ff;font-weight:500;opacity:.9}
+nav a:hover{opacity:1}
+.cta{display:inline-flex;align-items:center;gap:10px;padding:10px 14px;border-radius:12px;background:linear-gradient(135deg, var(--brand), var(--brand-2));color:#001527;font-weight:700;border:none;cursor:pointer;box-shadow:var(--shadow)}
+.cta:focus{outline:none;box-shadow:var(--shadow), var(--ring)}
+
+/* Hero */
+.hero{padding:56px 0 28px}
+.hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:28px;align-items:center}
+.title{font-size:42px;line-height:1.1;margin:0 0 8px}
+.subtitle{color:#cfe6ff;opacity:.9;margin:0 0 16px}
+.badges{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0 26px}
+.badge{padding:8px 12px;border:1px solid rgba(255,255,255,.12);border-radius:999px;background:rgba(255,255,255,.03)}
+.hero-card{background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.08);border-radius:var(--radius);padding:18px;box-shadow:var(--shadow)}
+.pair{display:flex;justify-content:space-between;padding:10px 12px;border-radius:12px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);margin-bottom:10px}
+.pair b{letter-spacing:.3px}
+
+/* Sections */
+section{padding:34px 0}
+.section-title{font-size:24px;margin:0 0 12px}
+.panel{background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.08);border-radius:var(--radius);padding:18px;box-shadow:var(--shadow)}
+
+/* Rates */
+.toolbar{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px}
+.input, select{appearance:none;background:#0f172a;border:1px solid rgba(255,255,255,.12);color:var(--text);padding:10px 12px;border-radius:12px}
+.input:focus, select:focus{outline:none;box-shadow:var(--ring)}
+table{width:100%;border-collapse:collapse}
+th, td{padding:12px;border-bottom:1px dashed rgba(255,255,255,.08);text-align:left}
+th{font-size:13px;color:#c8d9ff;text-transform:uppercase;letter-spacing:.6px}
+tbody tr:hover{background:rgba(255,255,255,.03)}
+.rate-up{color:var(--ok);font-weight:600}
+.rate-down{color:var(--danger);font-weight:600}
+
+/* Payment cards */
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.card{background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:16px}
+.card h4{margin:0 0 6px}
+.muted{color:var(--muted)}
+.mono{font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace}
+
+/* Contact */
+.actions{display:flex;gap:10px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:12px;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.04);color:var(--text);text-decoration:none;font-weight:600}
+.btn:hover{background:rgba(255,255,255,.07)}
+
+/* Footer */
+footer{border-top:1px solid rgba(255,255,255,.08);padding:20px 0;color:#b6c7ee}
+
+/* Modal */
+.modal{position:fixed;inset:0;display:none;place-items:center;background:rgba(0,0,0,.55)}
+.modal.open{display:grid}
+.modal-card{width:min(560px, 92vw);background:#0f1628;border:1px solid rgba(255,255,255,.12);border-radius:18px;box-shadow:var(--shadow)}
+.modal-head{display:flex;justify-content:space-between;align-items:center;padding:14px 16px;border-bottom:1px solid rgba(255,255,255,.08)}
+.modal-body{padding:16px}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.full{grid-column:1 / -1}
+.close{background:none;border:none;color:#cfe6ff;font-size:22px;cursor:pointer}
+.ghost{background:transparent;border:1px solid rgba(255,255,255,.18);color:#cfe6ff}
+
+@media (max-width: 900px){
+  .hero .wrap{grid-template-columns:1fr}
+  .grid{grid-template-columns:1fr}
+  nav{display:none}
+}
+
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <div class="logo" aria-label="PrimeWave Exchange">
+        <div class="logo-badge" aria-hidden="true"><span class="logo-wave"></span></div>
+        <span>PrimeWave Exchange</span>
+      </div>
+      <nav>
+        <a href="#rates">Rates</a>
+        <a href="#payments">Payment Details</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <button class="cta" id="openModal">Start Exchange</button>
+    </div>
+  </header>  <main class="container">
+    <!-- Hero -->
+    <section class="hero" id="home">
+      <div class="wrap">
+        <div>
+          <h1 class="title">Ride the wave of fast, secure global exchange.</h1>
+          <p class="subtitle">PrimeWave Exchange helps you move money between digital wallets and bank accounts worldwide. Transparent rates. Trusted payouts.</p>
+          <div class="badges">
+            <span class="badge">Skrill</span>
+            <span class="badge">PayPal</span>
+            <span class="badge">Neteller</span>
+            <span class="badge">Revolut</span>
+            <span class="badge">Wise</span>
+            <span class="badge">Bitcoin</span>
+            <span class="badge">USDT</span>
+          </div>
+          <div class="actions">
+            <a class="btn" href="#rates">View Rates</a>
+            <a class="btn" href="#payments">Payment Details</a>
+          </div>
+        </div>
+        <div class="hero-card" aria-label="Sample live pairs">
+          <div class="pair"><span>Revolut → TZS</span><b>1 USD = 2,590 TZS</b></div>
+          <div class="pair"><span>Skrill → BDT</span><b>1 USD = 117 BDT</b></div>
+          <div class="pair"><span>PayPal → UGX</span><b>1 USD = 3,650 UGX</b></div>
+          <div class="pair"><span>USDT → PKR</span><b>1 USDT = 279 PKR</b></div>
+          <small class="muted">*Examples. See live table below for today’s rates.*</small>
+        </div>
+      </div>
+    </section><!-- Rates -->
+<section id="rates">
+  <h2 class="section-title">Exchange Rates</h2>
+  <div class="panel">
+    <div class="toolbar">
+      <input id="search" class="input" placeholder="Search (e.g. Skrill, PKR, PayPal)…" />
+      <select id="sort">
+        <option value="-updated">Sort: Latest updated</option>
+        <option value="src">Sort: Source (A→Z)</option>
+        <option value="dst">Sort: Destination (A→Z)</option>
+        <option value="rate">Sort: Rate (Low→High)</option>
+        <option value="-rate">Sort: Rate (High→Low)</option>
+      </select>
+      <button class="btn ghost" id="refresh">Refresh</button>
+    </div>
+    <div style="overflow:auto">
+      <table aria-describedby="rates-help">
+        <thead>
+          <tr>
+            <th>Source</th>
+            <th>Destination</th>
+            <th>Rate</th>
+            <th>Min</th>
+            <th>Max</th>
+            <th>Updated</th>
+          </tr>
+        </thead>
+        <tbody id="ratesBody"></tbody>
+      </table>
+    </div>
+    <small id="rates-help" class="muted">Tip: Use the search to filter by wallet, currency, or country codes.</small>
+  </div>
+</section>
+
+<!-- Payment Details -->
+<section id="payments">
+  <h2 class="section-title">Payment Details</h2>
+  <div class="grid">
+    <div class="card">
+      <h4>Pakistan (PKR)</h4>
+      <p class="muted">Bank Transfer</p>
+      <div class="mono">
+        Bank: Meezan Bank<br>
+        Name: <span class="copy">PRIMEWAVE TRADING</span><br>
+        IBAN: <span class="copy">PK00MEZN000000000000</span><br>
+        Note: Add <b>Reference Code</b> we provide
+      </div>
+    </div>
+    <div class="card">
+      <h4>Bangladesh (BDT)</h4>
+      <p class="muted">bKash / Nagad</p>
+      <div class="mono">
+        bKash: <span class="copy">01XXXXXXXXX</span><br>
+        Nagad: <span class="copy">01XXXXXXXXX</span><br>
+        Note: Send screenshot after payment
+      </div>
+    </div>
+    <div class="card">
+      <h4>Tanzania (TZS)</h4>
+      <p class="muted">M-Pesa</p>
+      <div class="mono">
+        Number: <span class="copy">07XXXXXXXX</span><br>
+        Name: <span class="copy">PrimeWave Ltd</span>
+      </div>
+    </div>
+    <div class="card">
+      <h4>Uganda (UGX)</h4>
+      <p class="muted">Mobile Money</p>
+      <div class="mono">
+        MTN: <span class="copy">07XXXXXXXX</span><br>
+        Airtel: <span class="copy">07XXXXXXXX</span>
+      </div>
+    </div>
+    <div class="card">
+      <h4>Global Wallets</h4>
+      <p class="muted">Send/Receive</p>
+      <div class="mono">
+        Skrill • PayPal • Neteller • Revolut • Wise • USDT (TRC20/ERC20) • BTC
+      </div>
+    </div>
+    <div class="card">
+      <h4>Limits & SLA</h4>
+      <div class="mono">
+        Min: $10 • Max: $10,000 per transfer<br>
+        Payout: 5–30 minutes (during working hours)
+      </div>
+    </div>
+  </div>
+  <p class="muted" style="margin-top:8px">Always reconfirm details with our support before sending funds.</p>
+</section>
+
+<!-- About -->
+<section id="about">
+  <h2 class="section-title">Why PrimeWave?</h2>
+  <div class="panel">
+    <ul>
+      <li><b>Transparent</b> – clear rates & no surprise fees.</li>
+      <li><b>Fast</b> – streamlined verification & quick payouts.</li>
+      <li><b>Global</b> – major wallets and regional rails supported.</li>
+      <li><b>Secure</b> – we verify each counterparty and payment.</li>
+    </ul>
+    <p class="muted">This site is for information only. Service availability varies by region and compliance requirements.</p>
+  </div>
+</section>
+
+<!-- Contact -->
+<section id="contact">
+  <h2 class="section-title">Contact</h2>
+  <div class="panel">
+    <div class="actions">
+      <!-- Replace with your real links -->
+      <a class="btn" target="_blank" rel="noopener" href="https://wa.me/00000000000">WhatsApp</a>
+      <a class="btn" target="_blank" rel="noopener" href="https://t.me/your_handle">Telegram</a>
+      <a class="btn" href="#" id="copyEmail">Email: support@primewave.exchange</a>
+    </div>
+  </div>
+</section>
+
+  </main>  <footer>
+    <div class="container">
+      © <span id="year"></span> PrimeWave Exchange · All rights reserved
+    </div>
+  </footer>  <!-- Modal: Start Exchange -->  <div class="modal" id="exchangeModal" role="dialog" aria-modal="true" aria-label="Start Exchange Form">
+    <div class="modal-card">
+      <div class="modal-head">
+        <strong>Start an Exchange</strong>
+        <button class="close" id="closeModal" aria-label="Close">×</button>
+      </div>
+      <form class="modal-body" id="exchangeForm">
+        <div class="row">
+          <div>
+            <label>From (Wallet/Bank)</label>
+            <input class="input" name="from" required placeholder="e.g., Skrill, PayPal, Revolut" />
+          </div>
+          <div>
+            <label>To (Currency/Country)</label>
+            <input class="input" name="to" required placeholder="e.g., PKR, BDT, TZS" />
+          </div>
+          <div>
+            <label>Amount</label>
+            <input class="input" name="amount" type="number" min="1" step="0.01" required />
+          </div>
+          <div>
+            <label>Contact (WhatsApp/Telegram)</label>
+            <input class="input" name="contact" required placeholder="Your @handle or number" />
+          </div>
+          <div class="full">
+            <label>Notes</label>
+            <textarea class="input" name="notes" rows="3" placeholder="Any reference or timing notes"></textarea>
+          </div>
+        </div>
+        <div style="display:flex;justify-content:flex-end;gap:10px;margin-top:14px">
+          <button type="button" class="btn ghost" id="cancelForm">Cancel</button>
+          <button type="submit" class="cta">Submit Request</button>
+        </div>
+        <p class="muted" style="margin-top:10px">Submitting will open your chat app with pre‑filled details. We never store your data on this site.</p>
+      </form>
+    </div>
+  </div>  <script>
+    // ==== CONFIG: Edit these rates & details as needed =====================================
+    // Each item: { src:"Skrill", dst:"PKR", rate: 279, min:10, max:10000, updated:"2025-09-01" }
+    const RATES = [
+      { src:"Revolut", dst:"TZS", rate:2590, min:10, max:5000, updated:"2025-09-05" },
+      { src:"Skrill",  dst:"BDT", rate:117,  min:10, max:3000, updated:"2025-09-05" },
+      { src:"PayPal",  dst:"UGX", rate:3650, min:20, max:4000, updated:"2025-09-06" },
+      { src:"USDT",    dst:"PKR", rate:279,  min:20, max:10000, updated:"2025-09-06" },
+      { src:"Neteller",dst:"INR", rate:82,   min:20, max:5000, updated:"2025-09-04" },
+      { src:"Wise",    dst:"KES", rate:126,  min:20, max:5000, updated:"2025-09-04" },
+    ];
+
+    // ==== UTILITIES =======================================================================
+    const $$ = (sel, el=document) => Array.from(el.querySelectorAll(sel));
+    const $  = (sel, el=document) => el.querySelector(sel);
+
+    function renderRates(list){
+      const tbody = $('#ratesBody');
+      tbody.innerHTML = '';
+      for(const r of list){
+        const tr = document.createElement('tr');
+        const updated = new Date(r.updated);
+        tr.innerHTML = `
+          <td>${r.src}</td>
+          <td>${r.dst}</td>
+          <td><b>${r.rate.toLocaleString()}</b></td>
+          <td>${r.min}</td>
+          <td>${r.max}</td>
+          <td>${updated.toLocaleDateString()}</td>`;
+        tbody.appendChild(tr);
+      }
+    }
+
+    function sortRates(list, key){
+      const arr = [...list];
+      const desc = key.startsWith('-');
+      const k = desc ? key.slice(1) : key;
+      arr.sort((a,b)=>{
+        const A = k==='updated' ? new Date(a[k]).getTime() : a[k];
+        const B = k==='updated' ? new Date(b[k]).getTime() : b[k];
+        if(A < B) return desc?1:-1;
+        if(A > B) return desc?-1:1;
+        return 0;
+      });
+      return arr;
+    }
+
+    function filterRates(query){
+      const q = query.trim().toLowerCase();
+      if(!q) return [...RATES];
+      return RATES.filter(r =>
+        [r.src, r.dst, String(r.rate)].some(v => String(v).toLowerCase().includes(q))
+      );
+    }
+
+    function refreshTable(){
+      const q = $('#search').value;
+      const sort = $('#sort').value;
+      const filtered = filterRates(q);
+      const sorted = sortRates(filtered, sort);
+      renderRates(sorted);
+    }
+
+    // ==== COPY helpers ====================================================================
+    $$('.copy').forEach(el=>{
+      el.style.cursor = 'pointer';
+      el.title = 'Click to copy';
+      el.addEventListener('click', async ()=>{
+        try{ await navigator.clipboard.writeText(el.textContent.trim());
+          el.style.color = 'var(--ok)';
+          setTimeout(()=> el.style.color = '', 900);
+        }catch(e){ alert('Copy not supported on this browser.'); }
+      });
+    });
+
+    // ==== Modal & Form ====================================================================
+    const modal = $('#exchangeModal');
+    const openBtn = $('#openModal');
+    const closeBtn = $('#closeModal');
+    const cancelBtn = $('#cancelForm');
+    function openModal(){ modal.classList.add('open'); }
+    function closeModal(){ modal.classList.remove('open'); }
+    openBtn.addEventListener('click', openModal);
+    closeBtn.addEventListener('click', closeModal);
+    cancelBtn.addEventListener('click', closeModal);
+    modal.addEventListener('click', (e)=>{ if(e.target === modal) closeModal(); });
+
+    $('#exchangeForm').addEventListener('submit', (e)=>{
+      e.preventDefault();
+      const data = Object.fromEntries(new FormData(e.target).entries());
+      const summary = `PrimeWave Exchange Request\nFrom: ${data.from}\nTo: ${data.to}\nAmount: ${data.amount}\nContact: ${data.contact}\nNotes: ${data.notes||'-'}`;
+      const url = `https://wa.me/?text=${encodeURIComponent(summary)}`;
+      window.open(url, '_blank');
+      closeModal();
+    });
+
+    // ==== Contact helpers ================================================================
+    $('#copyEmail').addEventListener('click', (e)=>{
+      e.preventDefault();
+      const email = 'support@primewave.exchange';
+      navigator.clipboard.writeText(email).then(()=>{
+        $('#copyEmail').textContent = 'Email copied: ' + email;
+        setTimeout(()=> $('#copyEmail').textContent = 'Email: ' + email, 1200);
+      });
+    });
+
+    // ==== Init ===========================================================================
+    document.addEventListener('DOMContentLoaded', ()=>{
+      $('#year').textContent = new Date().getFullYear();
+      renderRates(sortRates(RATES, '-updated'));
+      $('#search').addEventListener('input', refreshTable);
+      $('#sort').addEventListener('change', refreshTable);
+      $('#refresh').addEventListener('click', refreshTable);
+    });
+
+    // =====================================================================================
+    // NOTE: This is a single-file site using only HTML, CSS, and JS. To update rates,
+    // edit the RATES array above. If you prefer separate files, split <style> and <script>
+    // into style.css and app.js and link them from <head>.
+    // =====================================================================================
+  </script></body>
+</html>

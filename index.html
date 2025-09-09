@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PrimeWave Exchange</title>
+  <meta name="description" content="PrimeWave Exchange – Fast, secure, global currency and digital wallet exchange." />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <div class="logo" aria-label="PrimeWave Exchange">
+        <div class="logo-badge" aria-hidden="true"><span class="logo-wave"></span></div>
+        <span>PrimeWave Exchange</span>
+      </div>
+      <nav>
+        <a href="#rates">Rates</a>
+        <a href="#payments">Payment Details</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <button class="cta" id="openModal">Start Exchange</button>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- Hero -->
+    <section class="hero" id="home">
+      <div class="wrap">
+        <div>
+          <h1 class="title">Ride the wave of fast, secure global exchange.</h1>
+          <p class="subtitle">PrimeWave Exchange helps you move money between digital wallets and bank accounts worldwide. Transparent rates. Trusted payouts.</p>
+          <div class="badges" id="walletBadges"></div>
+          <div class="actions">
+            <a class="btn" href="#rates">View Rates</a>
+            <a class="btn" href="#payments">Payment Details</a>
+          </div>
+        </div>
+        <div class="hero-card" aria-label="Sample live pairs">
+          <div class="pair"><span>Revolut → TZS</span><b>1 USD = 2,590 TZS</b></div>
+          <div class="pair"><span>Skrill → BDT</span><b>1 USD = 117 BDT</b></div>
+          <div class="pair"><span>PayPal → UGX</span><b>1 USD = 3,650 UGX</b></div>
+          <div class="pair"><span>USDT → PKR</span><b>1 USDT = 279 PKR</b></div>
+          <small class="muted">*Examples. See table below for current rates.*</small>
+        </div>
+      </div>
+    </section>
+
+    <!-- Rates -->
+    <section id="rates">
+      <h2 class="section-title">Exchange Rates</h2>
+      <div class="panel">
+        <div class="toolbar">
+          <input id="searchRates" class="input" placeholder="Search (e.g. Skrill, PKR, PayPal)..." />
+          <select id="continentRates">
+            <option value="">All Continents</option>
+            <option value="Africa">Africa</option>
+            <option value="Asia">Asia</option>
+            <option value="Europe">Europe</option>
+            <option value="North America">North America</option>
+            <option value="South America">South America</option>
+            <option value="Oceania">Oceania</option>
+            <option value="Global">Global</option>
+          </select>
+          <select id="sortRates">
+            <option value="-updated">Sort: Latest updated</option>
+            <option value="src">Sort: Source (A→Z)</option>
+            <option value="dst">Sort: Destination (A→Z)</option>
+            <option value="rate">Sort: Rate (Low→High)</option>
+            <option value="-rate">Sort: Rate (High→Low)</option>
+          </select>
+          <button class="btn ghost" id="refreshRates">Refresh</button>
+        </div>
+        <div style="overflow:auto">
+          <table aria-describedby="rates-help">
+            <thead>
+              <tr>
+                <th>Source</th>
+                <th>Destination</th>
+                <th>Rate</th>
+                <th>Min</th>
+                <th>Max</th>
+                <th>Updated</th>
+                <th>Continent</th>
+              </tr>
+            </thead>
+            <tbody id="ratesBody"></tbody>
+          </table>
+        </div>
+        <small id="rates-help" class="muted">Tip: Use search to filter by wallet, currency, or country codes.</small>
+      </div>
+    </section>
+
+    <!-- Payment Details -->
+    <section id="payments">
+      <h2 class="section-title">Payment Details (Worldwide)</h2>
+      <div class="panel">
+        <div class="toolbar">
+          <input id="searchCountries" class="input" placeholder="Search country or currency (e.g., Nigeria, NGN)" />
+          <select id="continentCountries">
+            <option value="">All Continents</option>
+            <option value="Africa">Africa</option>
+            <option value="Asia">Asia</option>
+            <option value="Europe">Europe</option>
+            <option value="North America">North America</option>
+            <option value="South America">South America</option>
+            <option value="Oceania">Oceania</option>
+            <option value="Global">Global</option>
+          </select>
+        </div>
+        <div id="countriesGrid" class="grid"></div>
+        <p class="muted" style="margin-top:8px">Always reconfirm details with our support before sending funds.</p>
+      </div>
+    </section>
+
+    <!-- About -->
+    <section id="about">
+      <h2 class="section-title">Why PrimeWave?</h2>
+      <div class="panel">
+        <ul>
+          <li><b>Transparent</b> – clear rates & no surprise fees.</li>
+          <li><b>Fast</b> – streamlined verification & quick payouts.</li>
+          <li><b>Global</b> – major wallets and regional rails supported.</li>
+          <li><b>Secure</b> – we verify each counterparty and payment.</li>
+        </ul>
+        <p class="muted">This site is for information only. Service availability varies by region and compliance requirements.</p>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact">
+      <h2 class="section-title">Contact</h2>
+      <div class="panel">
+        <div class="actions">
+          <!-- Replace with your real links -->
+          <a class="btn" target="_blank" rel="noopener" href="https://wa.me/00000000000">WhatsApp</a>
+          <a class="btn" target="_blank" rel="noopener" href="https://t.me/your_handle">Telegram</a>
+          <a class="btn" href="#" id="copyEmail">Email: support@primewave.exchange</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      © <span id="year"></span> PrimeWave Exchange · All rights reserved
+    </div>
+  </footer>
+
+  <!-- Modal: Start Exchange -->
+  <div class="modal" id="exchangeModal" role="dialog" aria-modal="true" aria-label="Start Exchange Form">
+    <div class="modal-card">
+      <div class="modal-head">
+        <strong>Start an Exchange</strong>
+        <button class="close" id="closeModal" aria-label="Close">×</button>
+      </div>
+      <form class="modal-body" id="exchangeForm">
+        <div class="row">
+          <div>
+            <label>From (Wallet/Bank)</label>
+            <input class="input" name="from" required placeholder="e.g., Skrill, PayPal, Revolut" />
+          </div>
+          <div>
+            <label>To (Currency/Country)</label>
+            <input class="input" name="to" required placeholder="e.g., PKR, BDT, TZS" />
+          </div>
+          <div>
+            <label>Amount</label>
+            <input class="input" name="amount" type="number" min="1" step="0.01" required />
+          </div>
+          <div>
+            <label>Contact (WhatsApp/Telegram)</label>
+            <input class="input" name="contact" required placeholder="Your @handle or number" />
+          </div>
+          <div class="full">
+            <label>Notes</label>
+            <textarea class="input" name="notes" rows="3" placeholder="Any reference or timing notes"></textarea>
+          </div>
+        </div>
+        <div style="display:flex;justify-content:flex-end;gap:10px;margin-top:14px">
+          <button type="button" class="btn ghost" id="cancelForm">Cancel</button>
+          <button type="submit" class="cta">Submit Request</button>
+        </div>
+        <p class="muted" style="margin-top:10px">Submitting will open your chat app with pre‑filled details. We never store your data on this site.</p>
+      </form>
+    </div>
+  </div>
+
+  <script src="countries.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
